@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>DogRun</title>
+		<meta name="Keywords" content="Dongguan Runwing Pet Products Co.,Ltd" />
+		<meta name="Description" content="Dongguan Runwing Pet Products Co.,Ltd" />
+
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/jquery1.42.min.js"></script>
+		<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+		<script type="text/javascript" src="js/custom.js"></script>
+	</head>
+
+	<body>
+		<div class="head_wrapper">
+			<div class="logo">
+				<a href="index.html"><img src="images/title_top.png" /></a>
+			</div>
+		</div>
+		<div class="menu">
+			<ul id="nav" class="nav clearfix">
+				<li>
+					<a href="index.html" class="home">Home</a>
+				</li>
+				<li>
+					<a href="about.html">About Us</a>
+				</li>
+				<li>
+					<a href="products.html">Products</a>
+				</li>
+				<li>
+					<a href="contact.html" class="nav_end">Contact Us</a>
+				</li>
+			</ul>
+		</div>
+		<div id="slideBox" class="slideBox ">
+			<div class="bd">
+				<ul>
+					<li style="background:url(images/roller_bg1.jpg) no-repeat center top;">
+						<a href="#"></a>
+					</li>
+
+					<li style="background:url(images/roller_bg2.jpg) no-repeat center top;">
+						<a href=""></a>
+					</li>
+
+					<li style="background:url(images/roller_bg3.jpg) no-repeat center top;">
+						<a href=""></a>
+					</li>
+
+				</ul>
+			</div>
+			<div class="hd">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+			<a class="prev" href="javascript:void(0)"></a>
+			<a class="next" href="javascript:void(0)"></a>
+		</div>
+		<script id="jsID" type="text/javascript">
+			jQuery(".slideBox").slide({
+				mainCell: ".bd ul",
+				effect: "leftLoop",
+				autoPlay: true,
+				interTime: 3500
+			});
+		</script>
+
+		<div class="clearfix"></div>
+		<div class="clearfix"></div>
+		<div class="box_main">
+			<div class="slideTxtBox">
+				<div class="hd">
+					<ul>
+						<li>Pet Bed</li>
+						<li>Pet Clothes</li>
+						<li>Pet Leash&Harness</li>
+						<li>Pet toy</li>
+					</ul>
+				</div>
+				<div class="bd" id="pet_list">
+				</div>
+			</div>
+			<script type="text/javascript">
+				jQuery(".slideTxtBox").slide();
+			</script>
+		</div>
+
+		<div class="clearfix"></div>
+		<div class="box_foot">
+			<div class="box_copy">
+				Copyright &copy; Dongguan Xiaoxiong E-Commerce Co., ltd
+			</div>
+		</div>
+	</body>
+
+	<script>
+		this.initTable(1);
+
+		function initTable(sid) {
+			$('#pet_list').empty();
+			$('#pet_list').append(createUl(sid));
+		}
+
+		function createUl(sid) {
+			var jsonData = pet_bed_json;
+			switch(sid) {
+				case 1:
+					jsonData = pet_bed_json;
+					foldname = "pet_bed";
+					break;
+				case 2:
+					jsonData = dog_clothing_json;
+					foldname = "pet_clothes";
+					break;
+				case 3:
+					jsonData = dog_collar_leash;
+					foldname = "pet_leash_harness";
+					break;
+				case 4:
+					jsonData = pet_toys;
+					foldname = "pet_toy";
+					break;
+			}
+			html = '<ul>';
+			for(var i = 0; i < 4; i++) {
+				var obj = jsonData[i];
+				html += '<li>'
+				html += '<a href="proview.html?sid=' + sid + '&itemNo=' + obj.itemNo + '&name=' + obj.name + '&oem=' + obj.oem + '" title="' + obj.name + '">'
+				html += '<img src="uploadfile/' + foldname + '/' + obj.itemNo + '.jpg" tppabs="uploadfile/' + foldname + '/' + obj.itemNo + '.jpg" width="220" height="220" alt=' + obj.name + '></>';
+				html += '<span>' + obj.name + '</span>';
+				html += '</li>'
+			}
+			html += '<a href="products.html?sid=' + sid + '" class = "more" > View more >> </a>'
+
+			//									<a href="products.asp?sid=3" class="more">View more >></a>
+			html += '</ul>';
+			return html;
+		}
+	</script>
+
+</html>
